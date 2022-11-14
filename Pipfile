@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 sounddevice = "*"
-speechrecognition = "*"
 pyaudio = "*"
+whisper = {git = "https://github.com/openai/whisper.git"}
 
 [dev-packages]
 

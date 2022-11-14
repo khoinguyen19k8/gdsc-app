@@ -11,17 +11,13 @@ def callback(recognizer, audio):
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
         print(
-            "Google Speech Recognition thinks you said "
-            + recognizer.recognize_google(audio)
+            "Whisper thinks you said "
+            + recognizer.recognize_whisper(audio, language="english")
         )
     except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio")
+        print("Whisper could not understand audio")
     except sr.RequestError as e:
-        print(
-            "Could not request results from Google Speech Recognition service; {0}".format(
-                e
-            )
-        )
+        print("Could not request results from Whisper")
 
 
 r = sr.Recognizer()
@@ -32,7 +28,7 @@ with m as source:
         source
     )  # we only need to calibrate once, before we start listening
 
-stop_listening = r.listen_in_background(m, callback)
+stop_listening = r.listen_in_background(m, callback, phrase_time_limit=1)
 
 print("Hello world")
 
